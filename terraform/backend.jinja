@@ -11,7 +11,9 @@ terraform {
     dynamodb_table = "aft-backend-759729569404"
     encrypt        = "true"
     kms_key_id     = "b511c42e-b90b-402c-9e57-f8a208d88dc1"
-    role_arn       = "{{ aft_admin_role_arn }}"
+    assume_role    = {
+      role_arn    = "{{ aft_admin_role_arn }}"
+    }
   }
 }
 
