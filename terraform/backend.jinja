@@ -3,17 +3,18 @@
 
 {% if tf_distribution_type == "oss" -%}
 terraform {
-  required_version = ">= 0.15.0"
+  required_version = ">= 1.6.0"
   backend "s3" {
-    region         = "{{ region }}"
-    bucket         = "{{ bucket }}"
-    key            = "{{ key }}"
-    dynamodb_table = "{{ dynamodb_table }}"
+    region         = "us-east-1"
+    bucket         = "aft-backend-759729569404-primary-region"
+    key            = "account-provisioning-customizations/terraform.tfstate"
+    dynamodb_table = "aft-backend-759729569404"
     encrypt        = "true"
-    kms_key_id     = "{{ kms_key_id }}"
-    role_arn       = "{{ aft_admin_role_arn }}"
+    kms_key_id     = "b511c42e-b90b-402c-9e57-f8a208d88dc1"
+    # role_arn removed - role assumption handled by provider
   }
 }
+
 {% else -%}
 terraform {
     backend "remote" {
